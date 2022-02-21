@@ -117,111 +117,113 @@ describe("Repositories", () => {
     });
   });
 
-  // it('[UsersRepository] should be able to list users ordered by first name', async () => {
-  //   const users = await usersRepository.findAllUsersOrderedByFirstName();
+  it("[UsersRepository] should be able to list users ordered by first name", async () => {
+    const users = await usersRepository.findAllUsersOrderedByFirstName();
 
-  //   expect(users).toEqual([
-  //     expect.objectContaining({
-  //       first_name: 'Daniele',
-  //     }),
-  //     expect.objectContaining({
-  //       first_name: 'Danilo',
-  //     }),
-  //     expect.objectContaining({
-  //       first_name: 'Joseph',
-  //     }),
-  //     expect.objectContaining({
-  //       first_name: 'Vinicius',
-  //     }),
-  //   ]);
-  // });
+    expect(users).toEqual([
+      expect.objectContaining({
+        first_name: "Daniele",
+      }),
+      expect.objectContaining({
+        first_name: "Danilo",
+      }),
+      expect.objectContaining({
+        first_name: "Joseph",
+      }),
+      expect.objectContaining({
+        first_name: "Vinicius",
+      }),
+    ]);
+  });
 
-  // it('[UsersRepository] should be able to find user by full name', async () => {
-  //   const result1 = await usersRepository.findUserByFullName({
-  //     first_name: 'VinIcIus',
-  //     last_name: 'fRAga',
-  //   });
+  it("[UsersRepository] should be able to find user by full name", async () => {
+    const result1 = await usersRepository.findUserByFullName({
+      first_name: "VinIcIus",
+      last_name: "fRAga",
+    });
 
-  //   const result2 = await usersRepository.findUserByFullName({
-  //     first_name: 'Danilo',
-  //     last_name: 'Vieira',
-  //   });
+    const result2 = await usersRepository.findUserByFullName({
+      first_name: "Danilo",
+      last_name: "Vieira",
+    });
 
-  //   expect(result1).toEqual([
-  //     expect.objectContaining({
-  //       first_name: 'Vinicius',
-  //       last_name: 'Fraga',
-  //       email: 'vinicius.fraga@rocketseat.com.br',
-  //     }),
-  //   ]);
+    expect(result1).toEqual([
+      expect.objectContaining({
+        first_name: "Vinicius",
+        last_name: "Fraga",
+        email: "vinicius.fraga@rocketseat.com.br",
+      }),
+    ]);
 
-  //   expect(result2).toEqual([
-  //     expect.objectContaining({
-  //       first_name: 'Danilo',
-  //       last_name: 'Vieira',
-  //       email: 'danilo.vieira@rocketseat.com.br',
-  //     }),
-  //   ]);
-  // });
+    expect(result2).toEqual([
+      expect.objectContaining({
+        first_name: "Danilo",
+        last_name: "Vieira",
+        email: "danilo.vieira@rocketseat.com.br",
+      }),
+    ]);
+  });
 
-  // it('[GamesRepository] should be able find a game by entire or partial given title', async () => {
-  //   const result1 = await gamesRepository.findByTitleContaining('of u');
-  //   const result2 = await gamesRepository.findByTitleContaining('eed');
-  //   const result3 = await gamesRepository.findByTitleContaining('rocket league');
+  it("[GamesRepository] should be able find a game by entire or partial given title", async () => {
+    const result1 = await gamesRepository.findByTitleContaining("of u");
+    const result2 = await gamesRepository.findByTitleContaining("eed");
+    const result3 = await gamesRepository.findByTitleContaining(
+      "rocket league"
+    );
 
-  //   expect(result1).toEqual([
-  //     expect.objectContaining({
-  //       title: 'The Last Of Us',
-  //     }),
-  //   ]);
+    expect(result1).toEqual([
+      expect.objectContaining({
+        title: "The Last Of Us",
+      }),
+    ]);
 
-  //   expect(result2).toEqual([
-  //     expect.objectContaining({
-  //       title: 'Need For Speed: Most Wanted',
-  //     }),
-  //     expect.objectContaining({
-  //       title: 'Need For Speed: Payback',
-  //     }),
-  //   ]);
+    expect(result2).toEqual([
+      expect.objectContaining({
+        title: "Need For Speed: Most Wanted",
+      }),
+      expect.objectContaining({
+        title: "Need For Speed: Payback",
+      }),
+    ]);
 
-  //   expect(result3).toEqual([
-  //     expect.objectContaining({
-  //       title: 'Rocket League',
-  //     }),
-  //   ]);
-  // });
+    expect(result3).toEqual([
+      expect.objectContaining({
+        title: "Rocket League",
+      }),
+    ]);
+  });
 
-  // it('[GamesRepository] should be able to get the total count of games', async () => {
-  //   const [{ count }] = await gamesRepository.countAllGames();
+  it("[GamesRepository] should be able to get the total count of games", async () => {
+    const [{ count }] = await gamesRepository.countAllGames();
 
-  //   expect(count).toBe('4');
-  // });
+    expect(count).toBe("4");
+  });
 
-  // it('[GamesRepository] should be able to list users who have given game id', async () => {
-  //   const game = await ormGamesRepository.findOneOrFail({
-  //     where: {
-  //       title: 'Rocket League',
-  //     },
-  //   });
+  it("[GamesRepository] should be able to list users who have given game id", async () => {
+    const game = await ormGamesRepository.findOneOrFail({
+      where: {
+        title: "Rocket League",
+      },
+    });
 
-  //   const users = await gamesRepository.findUsersByGameId(game.id);
+    const users = await gamesRepository.findUsersByGameId(game.id);
 
-  //   expect(users).toEqual([
-  //     expect.objectContaining({
-  //       first_name: 'Vinicius',
-  //       last_name: 'Fraga',
-  //       email: 'vinicius.fraga@rocketseat.com.br',
-  //     }),
-  //     expect.objectContaining({
-  //       first_name: 'Danilo',
-  //       last_name: 'Vieira',
-  //       email: 'danilo.vieira@rocketseat.com.br',
-  //     }),
-  //     expect.objectContaining({
-  //       first_name: 'Joseph',
-  //       last_name: 'Oliveira',
-  //       email: 'joseph.oliveira@rocketseat.com.br',
-  //     }),
-  //   ]);
-  // });
+    expect(users).toEqual([
+      expect.objectContaining({
+        first_name: "Vinicius",
+        last_name: "Fraga",
+        email: "vinicius.fraga@rocketseat.com.br",
+      }),
+      expect.objectContaining({
+        first_name: "Danilo",
+        last_name: "Vieira",
+        email: "danilo.vieira@rocketseat.com.br",
+      }),
+      expect.objectContaining({
+        first_name: "Joseph",
+        last_name: "Oliveira",
+        email: "joseph.oliveira@rocketseat.com.br",
+      }),
+    ]);
+  });
 });
